@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Build-Jdk-Spec: 23
+Build-Jdk-Spec: 24
 Main-Class: fileSearch.FileSearcher
 Created-By: Maven Integration for Eclipse
 
