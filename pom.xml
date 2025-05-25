@@ -30,7 +30,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>fileSearch.FileSearcher</mainClass>
+							<mainClass>fileSearch.FileSearcherGUI</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

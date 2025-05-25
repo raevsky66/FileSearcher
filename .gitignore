@@ -1,0 +1,29 @@
+# Eclipse специфичные файлы и каталоги
+.classpath
+.project
+.settings/
+*.launch
+
+# Каталоги сборки/вывода (Maven, Ant, Eclipse и др.)
+bin/
+target/
+out/
+build/
+
+# Файлы Maven, которые не должны попадать в репозиторий
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle специфичные каталоги и файлы
+.gradle/
+build/
+
+# Логи, временные файлы и системные артефакты
+*.log
+*.tmp
+*~ 
+.DS_Store
+Thumbs.db

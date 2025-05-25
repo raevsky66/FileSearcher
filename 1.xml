@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
-  <headerType>console</headerType>
+  <headerType>gui</headerType>
   <jar>C:\Users\raevs\git\FileSearcher\target\fileSearch-1.0.0.jar</jar>
   <outfile>C:\Users\raevs\git\FileSearcher\target\fs.exe</outfile>
   <errTitle></errTitle>
@@ -16,9 +16,9 @@
   <icon></icon>
   <jre>
     <path>%JAVA_HOME%;%PATH%</path>
-    <requiresJdk>true</requiresJdk>
-    <requires64Bit>true</requires64Bit>
-    <minVersion>1.8</minVersion>
-    <maxVersion>24</maxVersion>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion>24</minVersion>
+    <maxVersion></maxVersion>
   </jre>
 </launch4jConfig>
