@@ -74,9 +74,10 @@ public class FileSearcher {
     private static boolean searchTextInExcel(File file, String searchText, String excelColumn) {
         try (FileInputStream fis = new FileInputStream(file);
              Workbook workbook = file.getName().endsWith(".xlsx") ? new XSSFWorkbook(fis) : new HSSFWorkbook(fis)) {
-        	
-        	for (Sheet sheet : workbook) {
-                int columnIndex = getColumnIndex(sheet, excelColumn);
+            
+            for (Sheet sheet : workbook) {
+                int columnIndex = (excelColumn != null && !excelColumn.isEmpty()) ? Integer.parseInt(excelColumn) : -1;
+
                 for (Row row : sheet) {
                     if (columnIndex == -1) { // Искать во всех колонках
                         for (Cell cell : row) {
@@ -98,24 +99,9 @@ public class FileSearcher {
         return false;
     }
 
-    private static int getColumnIndex(Sheet sheet, String columnName) {
-        if (columnName == null || columnName.isEmpty()) return -1;
-        Row headerRow = sheet.getRow(0);
-        if (headerRow == null) return -1;
-
-        for (Cell cell : headerRow) {
-            if (cell.getCellType() == CellType.STRING && cell.getStringCellValue().equalsIgnoreCase(columnName)) {
-                return cell.getColumnIndex();
-            }
-        }
-        
-        System.err.println("Ошибка: колонка " + columnName + " не найдена в файле " + sheet.getSheetName());
-        return -1; // Колонка не найдена
-    }
-
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.out.println("Использование: java FileSearcher <папка1,папка2,...> <текст> [xmlTag - название тэга в котором искать] [excelColumn - индекс колонки, начиная с 0]");
+            System.out.println("Использование: fs <папка1,папка2,...> <текст> [xmlTag - название тэга в котором искать] [excelColumn - индекс колонки, начиная с 0]");
             return;
         }
 
@@ -123,8 +109,8 @@ public class FileSearcher {
         String searchText = args[1];
         String xmlTag = args.length > 2 ? args[2] : null;
         String excelColumn = args.length > 3 ? args[3] : null;
-        System.out.println("ищем по тэгу " + excelColumn);
-        System.out.println("ищем по колонке " + excelColumn);
+        System.out.println("ищем по тэгу: " + String.valueOf(xmlTag == null || xmlTag.isEmpty() ? "всем" : xmlTag));
+        System.out.println("ищем по колонке: " + String.valueOf(excelColumn == null || excelColumn.isEmpty() ? "всем" : excelColumn));
         searchFiles(directories, searchText, xmlTag, excelColumn);
     }
 }
